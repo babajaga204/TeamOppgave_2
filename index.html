@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +9,45 @@
 </head>
 
 <style>
-    
     /* #randomDiv {
         height: 100px;
         width: 100px;
         background-color: aqua;
     } */
 
+    #div1 {
+        /* border: 1px solid black; */
+        background-color: rgb(255, 255, 255);
+        width: 10px;
+        height: 10px;
+      }
+
 </style>
+
 <body>
     <script>
         let divID = 1;
-        let height = 200;
-        let width = document.getElementById('sliderW').value;
+        let height;
+        let width;
         let color = 'blue';
 
         // function updateTextInput(val) {
         //   document.getElementById('slider').value=val; 
         // }
-            function createNewDiv(divID, height, width, color){
-                document.getElementById("newdivs").innerHTML = /*html*/`
+        function createNewDiv(divID, height, width, color) {
+            document.getElementById("newdivs").innerHTML = /*html*/`
                 <div id="new${divID}" style="height:${height}px; width:${width}px; background-color:${color};"></div>
                 `;
-            }
+        }
+
+        function createHeight(value){
+            height = value;
+        }
+
+        function createWidth(){
+            width = document.getElementById("sliderW").this.value;
+        }
+
     </script>
 
     <!--Denne diven holder de forskjellige input typesa-->
@@ -41,10 +58,10 @@
               <option style="background-color:red;" value="red">Red</option>
               <option style="background-color:blue;" value="blue">Blue</option>
             </select>   -->
-            
+
             <!-- MARIUS <button onclick="createNewDiv(${divID},${height}${width}${color}">Lag ny div</button> -->
-           
-            <button onclick="createNewDiv(divID, height, width, color)">Lag ny div</button>
+
+            <button onclick="createNewDiv(1, 500, 390, 'blue')">Lag ny div</button>
         </div>
     </div>
 
@@ -54,22 +71,31 @@
     <div id='randomDiv'></div> -->
 
     <form>
-        <input type="range" name="amountRange" min="10" max="500" value="10" oninput="this.form.amountInput.value=this.value" />
-        <input id="sliderW" type="number" name="amountInput" min="10" max="500" value="10" oninput="this.form.amountRange.value=this.value" />
+        <input type="range" name="amountRange" min="10" max="500" value="10"
+            oninput="this.form.amountInput.value=this.value" />
+        <input id="sliderW" type="number" name="amountInput" min="10" max="500" value="10"
+            onchange="createWidth()" />
+            <input type="submit" onchange="createWidth()">
     </form>
 
-        <!-- Slider for å velge høyde på div -->
+    <!-- Slider for å velge høyde på div -->
+    <form>
+        <input type="range" name="amountRange" min="10" max="500" value="90"
+            oninput="this.form.amountInput.value=this.value" />
+        <input id="sliderH" type="number" name="amountInput" min="10" max="500" value="10"/>
+            <input type="submit" onchange="createHeight(this.value)">
+    </form>
 
+    <!-- Velg favorittfarge -->
 
-        <!-- Velg favorittfarge -->
-        
     <label for="favcolor">Select your favorite color:</label>
     <input type="color" id="favcolor" name="favcolor" value="#ff0000">
 
-        <!-- nye divs dukker opp her -->
-        <div id="newdivs">
-        
-        </div>
+    <!-- nye divs dukker opp her -->
+    <div id="newdivs">
+
+    </div>
 
 </body>
+
 </html>
